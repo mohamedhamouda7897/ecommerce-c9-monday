@@ -1,6 +1,7 @@
 import 'package:ecommerce_c9_monday/core/utils/app_colors.dart';
 import 'package:ecommerce_c9_monday/product_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -32,16 +33,16 @@ class _ProductListScreenState extends State<ProductListScreen> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 20, left: 10),
+                    padding: const EdgeInsets.only(right: 16, left: 16),
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                           side:
-                              BorderSide(width: 2, color: AppColors.blueColor)),
+                              BorderSide(width: 1, color: AppColors.blueColor)),
                       elevation: 0,
                       child: SearchBar(
                         hintText: "What do you want to search for?",
-                        textStyle: MaterialStateProperty.resolveWith(
+                        hintStyle: MaterialStateProperty.resolveWith(
                             (states) => const TextStyle(color: Colors.grey)),
                         padding: const MaterialStatePropertyAll<EdgeInsets>(
                             EdgeInsets.symmetric(
@@ -54,25 +55,30 @@ class _ProductListScreenState extends State<ProductListScreen> {
                           // controller.openView();
                         },
                         leading: Icon(
-                          Icons.search_sharp,
-                          size: 40,
+                          Icons.search,
+                          size: 24,
                           color: AppColors.blueColor,
                         ),
                       ),
                     ),
                   ),
                 ),
-                Icon(Icons.shopping_cart_outlined,
-                    size: 40, color: AppColors.blueColor)
+                Padding(
+                  padding: const EdgeInsets.only(right: 13),
+                  child: Icon(Icons.shopping_cart_outlined,
+                      size: 24, color: AppColors.blueColor),
+                )
               ],
             ),
+            SizedBox(height: 24.h),
             Expanded(
               child: GridView.builder(
                 itemCount: 20,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: (192 / 237),
                     crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10),
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16),
                 itemBuilder: (context, index) => const ProductItem(),
               ),
             )

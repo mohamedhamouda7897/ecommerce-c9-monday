@@ -10,7 +10,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(15),
           side: BorderSide(width: 2.w, color: Colors.blueGrey)),
       child: Column(
         children: [
@@ -19,8 +19,8 @@ class ProductItem extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
+                  topLeft: Radius.circular(15.0),
+                  topRight: Radius.circular(15.0),
                 ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -41,7 +41,7 @@ class ProductItem extends StatelessWidget {
                       child: Container(
                         // margin: const EdgeInsets.only(left: 20),
                         padding: const EdgeInsets.all(2),
-                        margin: const EdgeInsets.only(left: 20),
+                        margin: const EdgeInsets.only(left: 8),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15)),
@@ -56,25 +56,34 @@ class ProductItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 7.h),
+          SizedBox(height: 8.h),
           Expanded(
               child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Product Description"),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text("Product Description"),
+              ),
+              SizedBox(height: 8.h),
               Row(
                 children: [
-                  SizedBox(width: 5.w),
+                  SizedBox(width: 8.w),
                   const Text("EGP 1000"),
-                  SizedBox(width: 20.w),
+                  SizedBox(width: 16.w),
                   const Text("EGP 1200"),
                 ],
               ),
               SizedBox(height: 5.h),
+              const Spacer(),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left: 8.0, bottom: 13, right: 8),
                 child: Row(
                   children: [
-                    const Text("Review (4.6)"),
+                    const Text("Review"),
+                    SizedBox(width: 4.w),
+                    const Text("(4.6)"),
+                    SizedBox(width: 4.w),
                     const Icon(
                       Icons.star,
                       color: Colors.yellow,
