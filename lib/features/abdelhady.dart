@@ -79,7 +79,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     crossAxisCount: 2,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16),
-                itemBuilder: (context, index) => const ProductItem(),
+                itemBuilder: (context, index) {
+                  return ProductItem(index);
+                },
               ),
             )
           ],
