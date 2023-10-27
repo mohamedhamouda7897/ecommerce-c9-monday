@@ -1,3 +1,4 @@
+import 'package:ecommerce_c9_monday/features/abdelhady.dart';
 import 'package:ecommerce_c9_monday/features/login/presentation/pages/login_screen.dart';
 import 'package:ecommerce_c9_monday/features/signup/presentation/pages/signup.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ class AppRoute {
   static const String login = "login";
   static const String signup = "/";
   static const String home = "Home";
+  static const String productList = "ProductLisScreen";
 }
 
 class Routes {
@@ -19,6 +21,10 @@ class Routes {
       case AppRoute.signup:
         return MaterialPageRoute(
           builder: (context) => const SignUpScreen(),
+        );
+      case AppRoute.productList:
+        return MaterialPageRoute(
+          builder: (context) => const ProductListScreen(),
         );
       default:
         return MaterialPageRoute(
