@@ -1,7 +1,6 @@
 import 'package:ecommerce_c9_monday/core/utils/app_colors.dart';
 import 'package:ecommerce_c9_monday/product_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});

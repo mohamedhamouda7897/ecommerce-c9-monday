@@ -23,28 +23,32 @@ class ProductItem extends StatelessWidget {
                   topRight: Radius.circular(30.0),
                 ),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               // color: Colors.grey,
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 10),
                 child: Stack(
-                  alignment: Alignment.topRight,
+                  // alignment: Alignment.centerRight,
                   children: [
                     Image.network(
                       "https://static.nike.com/a/images/t_default/08b60b99-1dfc-4949-8903-d75ef3d7e39d/cortez-shoes.png",
                       fit: BoxFit.cover,
-                      height: 140.h,
+                      height: 191.h,
                       width: 128.w,
                     ),
-                    Container(
-                      // margin: const EdgeInsets.only(left: 20),
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Icon(
-                        Icons.favorite_outline,
-                        color: AppColors.blueColor,
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        // margin: const EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.all(2),
+                        margin: const EdgeInsets.only(left: 20),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Icon(
+                          Icons.favorite_outline,
+                          color: AppColors.blueColor,
+                        ),
                       ),
                     )
                   ],
