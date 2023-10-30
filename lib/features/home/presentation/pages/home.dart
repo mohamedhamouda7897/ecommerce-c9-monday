@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leadingWidth: 83.w,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Image.asset('assets/images/route.png'),
+          child: SvgPicture.asset('assets/images/route.svg'),
         ),
       ),
       body: SingleChildScrollView(
