@@ -33,10 +33,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 16, left: 16),
+                    padding: EdgeInsets.only(right: 16.w, left: 16.w),
                     child: Card(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.r),
                           side:
                               BorderSide(width: 1, color: AppColors.blueColor)),
                       elevation: 0,
@@ -44,9 +44,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         hintText: "What do you want to search for?",
                         hintStyle: MaterialStateProperty.resolveWith(
                             (states) => const TextStyle(color: Colors.grey)),
-                        padding: const MaterialStatePropertyAll<EdgeInsets>(
+                        padding: MaterialStatePropertyAll<EdgeInsets>(
                             EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 10)),
+                                horizontal: 16.w, vertical: 10.h)),
                         // controller: controller,
                         onTap: () {
                           // controller.openView();
@@ -56,7 +56,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         },
                         leading: Icon(
                           Icons.search,
-                          size: 24,
+                          size: 24.sp,
                           color: AppColors.blueColor,
                         ),
                       ),
@@ -64,9 +64,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 13),
+                  padding: EdgeInsets.only(right: 13.w),
                   child: Icon(Icons.shopping_cart_outlined,
-                      size: 24, color: AppColors.blueColor),
+                      size: 24.sp, color: AppColors.blueColor),
                 )
               ],
             ),
@@ -74,11 +74,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
             Expanded(
               child: GridView.builder(
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: (192 / 237),
                     crossAxisCount: 2,
-                    mainAxisSpacing: 16,
-                    crossAxisSpacing: 16),
+                    mainAxisSpacing: 16.h,
+                    crossAxisSpacing: 16.w),
                 itemBuilder: (context, index) {
                   return ProductItem(index);
                 },

@@ -11,26 +11,26 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          left: index.isEven ? 16 : 0, right: index.isOdd ? 16 : 0),
+          left: index.isEven ? 16.w : 0, right: index.isOdd ? 16.w : 0),
       child: Card(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.sp),
             side: BorderSide(width: 2.w, color: Colors.blueGrey)),
         child: Column(
           children: [
             Expanded(
               child: Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15.0),
-                    topRight: Radius.circular(15.0),
+                    topLeft: Radius.circular(15.sp),
+                    topRight: Radius.circular(15.sp),
                   ),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
                 // color: Colors.grey,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 10),
+                  padding: EdgeInsets.only(top: 8.h, left: 10.w),
                   child: Stack(
                     // alignment: Alignment.centerRight,
                     children: [
@@ -44,11 +44,12 @@ class ProductItem extends StatelessWidget {
                         alignment: Alignment.topRight,
                         child: Container(
                           // margin: const EdgeInsets.only(left: 20),
-                          padding: const EdgeInsets.all(2),
-                          margin: const EdgeInsets.only(left: 6),
+                          padding: EdgeInsets.all(2.h.w),
+
+                          margin: EdgeInsets.only(left: 6.w),
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15.sp)),
                           child: Icon(
                             Icons.favorite_outline,
                             color: AppColors.blueColor,
@@ -65,9 +66,9 @@ class ProductItem extends StatelessWidget {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Text("Product Description"),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.w),
+                  child: const Text("Product Description"),
                 ),
                 SizedBox(height: 8.h),
                 Row(
@@ -81,8 +82,7 @@ class ProductItem extends StatelessWidget {
                 SizedBox(height: 5.h),
                 const Spacer(),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 8.0, bottom: 13, right: 8),
+                  padding: EdgeInsets.only(left: 8.w, bottom: 13.h, right: 8.w),
                   child: Row(
                     children: [
                       const Text("Review"),
@@ -95,10 +95,9 @@ class ProductItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       Container(
-                          padding: const EdgeInsets.all(5),
-                          // margin: const EdgeInsets.only(left: 20),
+                          padding: EdgeInsets.all(5.w.h),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(25.sp),
                             color: AppColors.blueColor,
                           ),
                           child: const Icon(Icons.add, color: Colors.white))
@@ -108,7 +107,6 @@ class ProductItem extends StatelessWidget {
               ],
             ))
 
-            //   children: [Text("Review (4.6)"), Icon(Icons.star)],
             // ),
           ],
         ),
