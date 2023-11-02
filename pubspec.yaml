@@ -41,6 +41,7 @@ dependencies:
   bloc: ^8.1.2
   flutter_svg: ^1.1.6
   carousel_slider: ^4.2.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
