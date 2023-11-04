@@ -1,12 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/utils/app_colors.dart';
-import '../../../product_item.dart';
-import 'bloc/product_list_bloc.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../bloc/product_list_bloc.dart';
+import '../widgets/product_item.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -19,12 +17,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductListBloc(),
+      create: (context) => ProductListBloc()..add(GetAllProducts()),
       child: BlocConsumer<ProductListBloc, ProductListState>(
         listener: (context, state) {},
         builder: (context, state) {
-          ProductListBloc.get(context).add(GetAllProducts());
-
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,

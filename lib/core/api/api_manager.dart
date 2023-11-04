@@ -12,7 +12,7 @@ class ApiManager {
   //   dio=Dio();
   // }
   Future<Response> getData(
-      {required String endPoint, required Map<String, dynamic> data}) {
+      {required String endPoint, required Map<String, dynamic>? data}) {
     return dio.get(Constants.baseURl + endPoint, queryParameters: data);
   }
 
