@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: "ProductLisScreen",
         onGenerateRoute: (settings) => Routes.onGenerate(settings),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_colors.dart';
 import '../bloc/product_list_bloc.dart';
 import '../widgets/product_item.dart';
 
@@ -18,8 +18,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProductListBloc()..add(GetAllProducts()),
-      child: BlocConsumer<ProductListBloc, ProductListState>(
-        listener: (context, state) {},
+      child: BlocBuilder<ProductListBloc, ProductListState>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
