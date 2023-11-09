@@ -231,6 +231,8 @@ class ProductDetails extends StatelessWidget {
                     width: 33.w,
                   ),
 
+
+
                   Expanded(
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
