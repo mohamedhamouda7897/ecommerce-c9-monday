@@ -4,6 +4,7 @@ import 'package:ecommerce_c9_monday/core/api/api_manager.dart';
 import 'package:ecommerce_c9_monday/core/api/end_points.dart';
 import 'package:ecommerce_c9_monday/core/error/failuers.dart';
 import 'package:ecommerce_c9_monday/features/home/data/data_sources/home_remote_ds.dart';
+import 'package:ecommerce_c9_monday/features/home/data/models/CartModel.dart';
 import 'package:ecommerce_c9_monday/features/home/data/models/CategoryAndBrandModel.dart';
 
 class HomeRemoteDSImpl implements HomeRemoteDS {
@@ -34,6 +35,19 @@ class HomeRemoteDSImpl implements HomeRemoteDS {
       CategoryAndBrandModel model =
           CategoryAndBrandModel.fromJson(response.data);
       return Right(model);
+    } catch (e) {
+      return Left(RemoteFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, CartModel>> addToCard(String id, String token) async {
+    try {
+      Response response = await apiManager.postData(
+          endPoint: EndPoints.cart, body: {"productId": id}, token: token);
+
+      CartModel cartModel = CartModel.fromJson(response.data);
+      return Right(cartModel);
     } catch (e) {
       return Left(RemoteFailure(e.toString()));
     }

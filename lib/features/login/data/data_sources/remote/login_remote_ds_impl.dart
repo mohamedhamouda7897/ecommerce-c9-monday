@@ -21,6 +21,7 @@ class LoginRemoteDSImpl implements LoginRemoteDS {
           body: {"email": email, "password": password});
 
       UserModel userModel = UserModel.fromJson(response.data);
+
       return Right(userModel);
     } catch (e) {
       return Left(RemoteFailure(e.toString()));

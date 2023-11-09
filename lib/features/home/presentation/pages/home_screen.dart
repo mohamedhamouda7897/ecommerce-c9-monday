@@ -1,4 +1,5 @@
 import 'package:ecommerce_c9_monday/core/utils/app_colors.dart';
+import 'package:ecommerce_c9_monday/features/home/domain/use_cases/add_to_cart_usecase.dart';
 import 'package:ecommerce_c9_monday/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecommerce_c9_monday/features/home/presentation/tabs/fav_tab.dart';
 import 'package:ecommerce_c9_monday/features/home/presentation/tabs/home.dart';
@@ -21,39 +22,44 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) =>
-        HomeBloc(
-          GetBrandsUseCase(
-            HomeRepoImpl(
-              HomeRemoteDSImpl(
-                ApiManager(),
-              ),
-            ),
-          ),
-          GetCategoryUseCase(
-            HomeRepoImpl(
-              HomeRemoteDSImpl(
-                ApiManager(),
-              ),
-            ),
-          ),
+        BlocProvider(
+            create: (context) => HomeBloc(
+                GetBrandsUseCase(
+                  HomeRepoImpl(
+                    HomeRemoteDSImpl(
+                      ApiManager(),
+                    ),
+                  ),
+                ),
+                GetCategoryUseCase(
+                  HomeRepoImpl(
+                    HomeRemoteDSImpl(
+                      ApiManager(),
+                    ),
+                  ),
+                ),
+                AddCartUseCase(
+                  HomeRepoImpl(
+                    HomeRemoteDSImpl(
+                      ApiManager(),
+                    ),
+                  ),
+                ))
+              ..add(HomeGetCategoryEvent())
+              ..add(HomeGetBrandsEvent())),
+        BlocProvider(
+          create: (context) => ProductListBloc()..add(GetAllProducts()),
         )
-          ..add(HomeGetCategoryEvent())..add(HomeGetBrandsEvent())),
-        BlocProvider(create: (context) =>
-        ProductListBloc()
-          ..add(GetAllProducts()),)
       ],
-
       child: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state.type == ScreenType.brandsError ||
               state.type == ScreenType.categoryFailures) {
             showDialog(
               context: context,
-              builder: (context) =>
-                  AlertDialog(
-                    title: Text("Error"),
-                    content: Text(state.failures?.message ?? ""),
+              builder: (context) => AlertDialog(
+                title: Text("Error"),
+                content: Text(state.failures?.message ?? ""),
               ),
             );
           }
@@ -70,9 +76,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             bottomNavigationBar: BottomNavigationBar(
-              currentIndex: HomeBloc
-                  .get(context)
-                  .index,
+              currentIndex: HomeBloc.get(context).index,
               onTap: (value) {
                 HomeBloc.get(context).add(HomeChangeNavBarEvent(value));
               },
@@ -99,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                         child: TextField(
                           decoration: InputDecoration(
                               contentPadding:
-                              EdgeInsets.symmetric(vertical: 5.h),
+                                  EdgeInsets.symmetric(vertical: 5.h),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(
                                     width: 1, color: Color(0xFF004182)),
@@ -126,10 +130,16 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: 20,
                       ),
-                      Icon(
-                        Icons.shopping_cart,
-                        size: 30.0.sp,
-                        color: Color(0xff004182),
+                      InkWell(
+                        onTap: () {
+                          HomeBloc.get(context)
+                              .add(AddToCartEvent("6428ebc6dc1175abc65ca0b9"));
+                        },
+                        child: Icon(
+                          Icons.shopping_cart,
+                          size: 30.0.sp,
+                          color: Color(0xff004182),
+                        ),
                       ),
                     ],
                   ),
@@ -137,9 +147,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 16.h,
                 ),
-                Expanded(child: tabs[HomeBloc
-                    .get(context)
-                    .index]),
+                Expanded(child: tabs[HomeBloc.get(context).index]),
               ],
             ),
           );

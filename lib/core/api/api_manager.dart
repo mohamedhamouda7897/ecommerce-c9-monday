@@ -17,7 +17,10 @@ class ApiManager {
   }
 
   Future<Response> postData(
-      {required String endPoint, required Map<String, dynamic> body}) {
-    return dio.post(Constants.baseURl + endPoint, data: body);
+      {required String endPoint,
+      required Map<String, dynamic> body,
+      String? token}) {
+    return dio.post(Constants.baseURl + endPoint,
+        data: body, options: Options(headers: {"token": token}));
   }
 }

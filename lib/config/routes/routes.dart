@@ -9,7 +9,7 @@ import '../../features/signup/presentation/pages/signup.dart';
 class AppRoute {
   static const String logIn = "/";
   static const String signUp = "signup";
-  static const String home = "homeScreen";
+  static const String home = "home";
   static const String productList = "productList";
   static const String productDetails = "productDetails";
 }

@@ -1,18 +1,29 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_c9_monday/config/routes/routes.dart';
+import 'package:ecommerce_c9_monday/core/cache/shared_pref.dart';
 import 'package:ecommerce_c9_monday/core/utils/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheData.init();
   Bloc.observer = MyBlocObserver();
-  runApp(const MyApp());
+  String start;
+  String? token = await CacheData.getData("token");
+  if (token == null) {
+    start = "/";
+  } else {
+    start = "home";
+  }
+  runApp(MyApp(start));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  String start;
 
-  // This widget is the root of your application.
+  MyApp(this.start, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -21,6 +32,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        initialRoute: start,
         onGenerateRoute: (settings) => Routes.onGenerate(settings),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_c9_monday/features/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,6 +17,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   bool descTextShowFlag = false;
   bool isSelected = false;
+
   @override
   Widget build(BuildContext context) {
     var product = ModalRoute.of(context)!.settings.arguments as Data?;
@@ -208,7 +210,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   backgroundColor: const Color(0xff004182),
                                   padding: EdgeInsets.symmetric(
                                       vertical: 15.h, horizontal: 32.w)),
-                              onPressed: () {},
+                              onPressed: () {
+                                HomeBloc.get(context)
+                                    .add(AddToCartEvent(product?.id ?? ""));
+                              },
                               child: Row(
                                 children: [
                                   const Icon(Icons.add_shopping_cart_outlined),
