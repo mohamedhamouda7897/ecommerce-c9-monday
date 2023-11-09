@@ -42,7 +42,9 @@ dependencies:
   flutter_svg: ^1.1.6
   carousel_slider: ^4.2.1
   equatable: ^2.0.5
+  cached_network_image: ^3.3.0
   dartz: ^0.10.1
+
 
 dev_dependencies:
   flutter_test:
