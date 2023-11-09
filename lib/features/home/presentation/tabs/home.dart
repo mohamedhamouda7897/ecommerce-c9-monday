@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../domain/entities/CategoryAndBrandEntity.dart';
 import '../bloc/home_bloc.dart';
@@ -37,73 +36,17 @@ class _HomeTabState extends State<HomeTab> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leadingWidth: 83.w,
-            leading: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SvgPicture.asset('assets/images/route.svg'),
-            ),
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(vertical: 5.h),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 1, color: Color(0xFF004182)),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 1, color: Color(0xFF004182)),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: Color(0xFF06004E),
-                              ),
-                              hintText: 'what do you search for?',
-                              hintStyle: TextStyle(
-                                color: Color(0x9906004E),
-                                fontSize: 14.sp,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w300,
-                              )),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(
-                        Icons.shopping_cart,
-                        size: 30.0.sp,
-                        color: Color(0xff004182),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                Stack(
-                  children: [
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        height: 200.h,
-                        aspectRatio: 16 / 9,
-                        viewportFraction: 0.93,
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      height: 200.h,
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 0.93,
                         initialPage: 0,
                         enableInfiniteScroll: true,
                         reverse: false,
@@ -202,7 +145,6 @@ class _HomeTabState extends State<HomeTab> {
                 )
               ],
             ),
-          ),
         );
       },
     );

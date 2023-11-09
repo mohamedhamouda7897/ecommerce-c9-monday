@@ -7,10 +7,10 @@ import '../../features/product_list/presentation/pages/product_list.dart';
 import '../../features/signup/presentation/pages/signup.dart';
 
 class AppRoute {
-  static const String logIn = "login";
+  static const String logIn = "/";
   static const String signUp = "signup";
   static const String home = "homeScreen";
-  static const String productList = "/";
+  static const String productList = "productList";
   static const String productDetails = "productDetails";
 }
 
