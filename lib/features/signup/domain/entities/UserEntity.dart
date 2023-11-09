@@ -1,4 +1,6 @@
-class UserEntity {
+import 'package:equatable/equatable.dart';
+
+class UserEntity extends Equatable {
   UserEntity({
     this.user,
     this.token,
@@ -6,9 +8,13 @@ class UserEntity {
 
   UserDataEntity? user;
   String? token;
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [user, token];
 }
 
-class UserDataEntity {
+class UserDataEntity extends Equatable {
   UserDataEntity({
     this.name,
     this.email,
@@ -16,4 +22,8 @@ class UserDataEntity {
 
   String? name;
   String? email;
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [name, email];
 }

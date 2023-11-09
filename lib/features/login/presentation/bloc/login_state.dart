@@ -1,32 +1,26 @@
-part of 'sign_up_bloc.dart';
+part of 'login_bloc.dart';
 
-enum ScreenStatus {
-  init,
-  loading,
-  successfully,
-  failures,
-}
-
-class SignUpState {
+@immutable
+class LoginState {
   final ScreenStatus? screenStatus;
   final UserEntity? userEntity;
   final Failures? failures;
 
-  SignUpState({this.screenStatus, this.userEntity, this.failures});
+  const LoginState({this.screenStatus, this.userEntity, this.failures});
 
-  SignUpState copyWith(
+  LoginState copyWith(
       {ScreenStatus? screenStatus,
       UserEntity? userEntity,
       Failures? failures}) {
-    return SignUpState(
+    return LoginState(
         screenStatus: screenStatus ?? this.screenStatus,
         failures: failures ?? this.failures,
         userEntity: userEntity ?? this.userEntity);
   }
 }
 
-class SignUpInitial extends SignUpState {
-  SignUpInitial()
+class LoginInitial extends LoginState {
+  const LoginInitial()
       : super(
           screenStatus: ScreenStatus.init,
         );

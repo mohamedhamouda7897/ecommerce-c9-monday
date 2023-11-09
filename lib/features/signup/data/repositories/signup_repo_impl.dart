@@ -1,7 +1,9 @@
+import 'package:dartz/dartz.dart';
 import 'package:ecommerce_c9_monday/features/signup/data/data_sources/remote/remote_ds.dart';
 import 'package:ecommerce_c9_monday/features/signup/domain/entities/UserEntity.dart';
 import 'package:ecommerce_c9_monday/features/signup/domain/repositories/signup_repo.dart';
 
+import '../../../../core/error/failuers.dart';
 import '../models/request_data.dart';
 
 class SignUpRepoImpl implements SignupRepo {
@@ -10,6 +12,6 @@ class SignUpRepoImpl implements SignupRepo {
   SignUpRepoImpl(this.remoteDataSource);
 
   @override
-  Future<UserEntity> signUp(RequestData requestData) =>
+  Future<Either<Failures, UserEntity>> signUp(RequestData requestData) =>
       remoteDataSource.signUp(requestData);
 }

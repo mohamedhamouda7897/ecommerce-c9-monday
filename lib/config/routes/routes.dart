@@ -3,10 +3,12 @@ import 'package:ecommerce_c9_monday/features/login/presentation/pages/login_scre
 import 'package:ecommerce_c9_monday/features/signup/presentation/pages/signup.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/home/presentation/pages/home_screen.dart';
+
 class AppRoute {
-  static const String login = "login";
-  static const String signup = "/";
-  static const String home = "Home";
+  static const String login = "/";
+  static const String signup = "signUp";
+  static const String home = "home";
   static const String productList = "ProductLisScreen";
 }
 
@@ -15,12 +17,16 @@ class Routes {
     switch (settings.name) {
       case AppRoute.login:
         return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => LoginScreen(),
         );
 
       case AppRoute.signup:
         return MaterialPageRoute(
           builder: (context) => const SignUpScreen(),
+        );
+      case AppRoute.home:
+        return MaterialPageRoute(
+          builder: (context) => HomeScreen(),
         );
       case AppRoute.productList:
         return MaterialPageRoute(

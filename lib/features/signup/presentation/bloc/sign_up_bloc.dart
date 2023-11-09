@@ -9,6 +9,8 @@ import 'package:ecommerce_c9_monday/features/signup/domain/use_cases/signup_usec
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/error/failuers.dart';
+
 part 'sign_up_event.dart';
 
 part 'sign_up_state.dart';
@@ -32,14 +34,16 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             password: "123@Hamouda",
             rePassword: "123@Hamouda",
             phone: "01110944558");
-        try {
-          UserEntity userEntity = await signUpUseCase.call(requestData);
 
+        var result = await signUpUseCase.call(requestData);
+
+        result.fold((l) {
+          emit(
+              state.copyWith(screenStatus: ScreenStatus.failures, failures: l));
+        }, (r) {
           emit(state.copyWith(
-              screenStatus: ScreenStatus.successfully, userEntity: userEntity));
-        } catch (e) {
-          emit(state.copyWith(screenStatus: ScreenStatus.failures));
-        }
+              screenStatus: ScreenStatus.successfully, userEntity: r));
+        });
       }
     });
   }

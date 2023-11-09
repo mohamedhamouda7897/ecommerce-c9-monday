@@ -37,8 +37,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
-                          side:
-                              BorderSide(width: 1, color: AppColors.blueColor)),
+                          side: BorderSide(
+                              width: 1, color: AppColors.BackGround)),
                       elevation: 0,
                       child: SearchBar(
                         hintText: "What do you want to search for?",
@@ -57,7 +57,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         leading: Icon(
                           Icons.search,
                           size: 24,
-                          color: AppColors.blueColor,
+                          color: AppColors.BackGround,
                         ),
                       ),
                     ),
@@ -66,7 +66,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 Padding(
                   padding: const EdgeInsets.only(right: 13),
                   child: Icon(Icons.shopping_cart_outlined,
-                      size: 24, color: AppColors.blueColor),
+                      size: 24, color: AppColors.BackGround),
                 )
               ],
             ),
