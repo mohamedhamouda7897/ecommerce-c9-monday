@@ -31,10 +31,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               style: TextStyle(fontSize: 20.sp, color: AppColors.blueColor),
             ),
             const Spacer(),
-            Icon(Icons.search, color: AppColors.blueColor, size: 20.sp),
+            Icon(Icons.search, color: AppColors.BackGround, size: 20.sp),
             SizedBox(width: 28.w),
             Icon(Icons.shopping_cart_outlined,
-                color: AppColors.blueColor, size: 20.sp)
+                color: AppColors.BackGround, size: 20.sp)
           ],
         ),
         elevation: 0,

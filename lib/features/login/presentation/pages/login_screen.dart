@@ -241,7 +241,7 @@ class LoginScreen extends StatelessWidget {
                       child: Center(
                           child: InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, AppRoute.signup);
+                                Navigator.pushNamed(context, AppRoute.signUp);
                               },
                               child: Text.rich(TextSpan(children: [
                                 TextSpan(
