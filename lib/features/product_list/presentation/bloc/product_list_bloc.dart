@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/api/api_manager.dart';
-import '../../../../core/error/failures.dart';
+import '../../../../core/error/failuers.dart';
 import '../../data/data_sources/remote_ds/product_list_ds.dart';
 import '../../data/data_sources/remote_ds/product_list_ds_impl.dart';
 import '../../data/models/ProductModel.dart';

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/failures.dart';
-import '../../../signup/domain/entities/UserEntity.dart';
+import '../../../../core/error/failuers.dart';
 import '../../data/models/ProductModel.dart';
 import '../repositories/product_list_repo.dart';
 

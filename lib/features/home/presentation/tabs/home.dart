@@ -47,104 +47,104 @@ class _HomeTabState extends State<HomeTab> {
                       height: 200.h,
                       aspectRatio: 16 / 9,
                       viewportFraction: 0.93,
-                        initialPage: 0,
-                        enableInfiniteScroll: true,
-                        reverse: false,
-                        enlargeCenterPage: true,
-                        enlargeFactor: 0.2,
-                        scrollDirection: Axis.horizontal,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _currentIndex = index;
-                          });
-                        },
-                      ),
-                      items: imageUrls.map((imageUrl) {
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      enlargeCenterPage: true,
+                      enlargeFactor: 0.2,
+                      scrollDirection: Axis.horizontal,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                    ),
+                    items: imageUrls.map((imageUrl) {
+                      return Container(
+                        width: double.infinity,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.network(
+                            imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  Positioned(
+                    bottom: 20.h,
+                    left: 0,
+                    right: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: imageUrls.asMap().entries.map((entry) {
+                        int index = entry.key;
                         return Container(
-                          width: double.infinity,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.network(
-                              imageUrl,
-                              fit: BoxFit.cover,
-                            ),
+                          width: 10.w,
+                          height: 10.h,
+                          margin: EdgeInsets.symmetric(horizontal: 4.w),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _currentIndex == index
+                                ? Color(0xFF06004E)
+                                : Colors.white,
                           ),
                         );
                       }).toList(),
                     ),
-                    Positioned(
-                      bottom: 20.h,
-                      left: 0,
-                      right: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: imageUrls.asMap().entries.map((entry) {
-                          int index = entry.key;
-                          return Container(
-                            width: 10.w,
-                            height: 10.h,
-                            margin: EdgeInsets.symmetric(horizontal: 4.w),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: _currentIndex == index
-                                  ? Color(0xFF06004E)
-                                  : Colors.white,
-                            ),
-                          );
-                        }).toList(),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 16.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Categories',
+                      style: TextStyle(
+                        color: Color(0xFF06004E),
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.w),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Categories',
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'view all',
                         style: TextStyle(
                           color: Color(0xFF06004E),
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'view all',
-                          style: TextStyle(
-                            color: Color(0xFF06004E),
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      )
-                    ],
+                    )
+                  ],
+                ),
+              ),
+              (state.categories != null)
+                  ? catItem(state.categories ?? [])
+                  : Center(child: CircularProgressIndicator()),
+              Padding(
+                padding: EdgeInsets.only(left: 16.w),
+                child: Text(
+                  'Home Appliance',
+                  style: TextStyle(
+                    color: Color(0xFF06004E),
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                (state.categories != null)
-                    ? catItem(state.categories ?? [])
-                    : Center(child: CircularProgressIndicator()),
-                Padding(
-                  padding: EdgeInsets.only(left: 16.w),
-                  child: Text(
-                    'Home Appliance',
-                    style: TextStyle(
-                      color: Color(0xFF06004E),
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                state.brands != null
-                    ? brandsWidget(state.brands ?? [])
-                    : Center(child: CircularProgressIndicator()),
-                SizedBox(
-                  height: 20,
-                )
-              ],
-            ),
+              ),
+              state.brands != null
+                  ? brandsWidget(state.brands ?? [])
+                  : Center(child: CircularProgressIndicator()),
+              SizedBox(
+                height: 20,
+              )
+            ],
+          ),
         );
       },
     );

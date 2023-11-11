@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_c9_monday/features/signup/data/models/UserModel.dart';
-
 import '../../../../../core/error/failuers.dart';
+import '../../models/UserModel.dart';
 import '../../models/request_data.dart';
 
 abstract class RemoteDataSource {

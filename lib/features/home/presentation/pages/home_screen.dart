@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
               leadingWidth: 83.w,
               leading: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: SvgPicture.asset('assets/images/route.svg'),
+                child: SvgPicture.asset('assets/images/route.png'),
               ),
             ),
             bottomNavigationBar: BottomNavigationBar(
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
               type: BottomNavigationBarType.fixed,
               selectedItemColor: Colors.white,
               unselectedItemColor: Colors.grey,
-              items: [
+              items: const [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.production_quantity_limits_rounded),

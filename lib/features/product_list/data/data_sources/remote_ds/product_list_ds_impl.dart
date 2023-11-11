@@ -4,7 +4,7 @@ import 'package:ecommerce_c9_monday/features/product_list/data/data_sources/remo
 
 import '../../../../../core/api/api_manager.dart';
 import '../../../../../core/api/end_points.dart';
-import '../../../../../core/error/failures.dart';
+import '../../../../../core/error/failuers.dart';
 import '../../models/ProductModel.dart';
 
 class ProductRemoteDSImpl implements ProductRemoteDS {
@@ -23,7 +23,7 @@ class ProductRemoteDSImpl implements ProductRemoteDS {
       return Right(productModel);
     } catch (e) {
       print(e.toString());
-      return Left(RemoteFailures(e.toString()));
+      return Left(RemoteFailure(e.toString()));
     }
   }
 }

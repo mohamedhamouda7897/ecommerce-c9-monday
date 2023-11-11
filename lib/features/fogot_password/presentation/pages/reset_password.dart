@@ -3,17 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/routes/routes.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../bloc/sign_up_bloc.dart';
+import '../../../product_list/presentation/bloc/product_list_bloc.dart';
+import '../manager/forgot_password_screen_bloc.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class ResetPasswordScreen extends StatelessWidget {
+  ResetPasswordScreen({super.key});
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignUpBloc(),
-      child: BlocConsumer<SignUpBloc, SignUpState>(
+      create: (context) => ForgotPasswordScreenBloc(),
+      child: BlocConsumer<ForgotPasswordScreenBloc, ForgotPasswordScreenState>(
         listener: (context, state) {
           if (state.screenStatus == ScreenStatus.loading) {
             showDialog(
@@ -29,6 +30,7 @@ class SignUpScreen extends StatelessWidget {
           } else if (state.screenStatus == ScreenStatus.successfully) {
             Navigator.pop(context);
             showDialog(
+                barrierDismissible: false,
                 context: context,
                 builder: (context) {
                   return AlertDialog(
@@ -36,28 +38,24 @@ class SignUpScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.green, fontSize: 18)),
                     elevation: 0,
                     content: SizedBox(
-                      height: 150.h,
+                      height: 140.h,
                       child: Column(
                         children: [
-                          Text(
-                              "Registration done, Welcome ${state.userEntity?.user?.name}"),
+                          const Text(
+                              "You have changed your password successfully"),
+                          SizedBox(height: 30.h),
                           ElevatedButton(
                               onPressed: () {
                                 Navigator.pushNamedAndRemoveUntil(
                                     context, AppRoute.logIn, (route) => false);
                               },
-                              child: const Text("Go to sign in")),
-                          ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Stay here"))
+                              child: const Text("Go to login page")),
                         ],
                       ),
                     ),
                   );
                 });
-          } else if (state.screenStatus == ScreenStatus.failure) {
+          } else if (state.screenStatus == ScreenStatus.failures) {
             Navigator.pop(context);
             showDialog(
               context: context,
@@ -65,11 +63,13 @@ class SignUpScreen extends StatelessWidget {
                 title: const Text("Error", style: TextStyle(fontSize: 18)),
                 elevation: 0,
                 content: SizedBox(
-                  height: 100.h,
+                  height: 140.h,
                   child: Column(
                     children: [
                       Text(state.failures?.message ?? "unknown error occurred",
+                          maxLines: 2,
                           style: const TextStyle(color: Colors.red)),
+                      SizedBox(height: 30.h),
                       ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -84,75 +84,33 @@ class SignUpScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
+            appBar: AppBar(
+              leading: InkWell(
+                  onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, AppRoute.logIn, (route) => false);
+                  },
+                  child: const Icon(Icons.arrow_back_outlined)),
+              backgroundColor: AppColors.blueColor,
+              elevation: 0,
+            ),
             resizeToAvoidBottomInset: false,
             backgroundColor: AppColors.blueColor,
             body: Padding(
-              padding: EdgeInsets.only(top: 70.h, left: 20.w, right: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: Form(
                 key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Image.asset("assets/images/route.png"),
-                    SizedBox(height: 10.h),
-                    const Text("Full Name",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    Container(
-                        margin: EdgeInsets.only(top: 10.h),
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white),
-                        child: TextFormField(
-                          controller:
-                              SignUpBloc.get(context).fullNameController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'enter your full name';
-                            } else if (RegExp(r'^([0-9]*[a-zA-Z]){3,}[0-9]*$')
-                                    .hasMatch(value) ==
-                                false) {
-                              return "name must exceed 3 letters";
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Enter your full name'),
-                          keyboardType: TextInputType.name,
-                        )),
-                    SizedBox(height: 10.h),
-                    const Text("Phone Number",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    Container(
-                        margin: EdgeInsets.only(top: 20.h),
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.r),
-                            color: Colors.white),
-                        child: TextFormField(
-                          controller:
-                              SignUpBloc.get(context).mobileNumberController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter mobile number';
-                            }
-                            final bool phoneValid =
-                                RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)')
-                                    .hasMatch(value);
-                            if (!phoneValid) {
-                              return "please enter a valid phone";
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'enter your phone number'),
-                          keyboardType: TextInputType.phone,
-                        )),
-                    SizedBox(height: 10.h),
-                    const Text("E-mail Address",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    SizedBox(height: 40.h),
+                    const Text("Reset your account password",
+                        style: TextStyle(fontSize: 24, color: Colors.white)),
+                    SizedBox(height: 20.h),
+                    const Text("Enter your email",
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                    SizedBox(height: 20.h),
                     Container(
                         margin: EdgeInsets.only(top: 10.h),
                         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -160,36 +118,23 @@ class SignUpScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                             color: Colors.white),
                         child: TextFormField(
-                          controller: SignUpBloc.get(context).emailController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'please enter your email';
-                            }
-                            final bool emailValid = RegExp(
-                                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                .hasMatch(value);
-                            if (!emailValid) {
-                              return "please enter a valid email";
-                            }
-                            return null;
-                          },
+                          controller: ForgotPasswordScreenBloc.get(context)
+                              .emailController,
                           decoration: const InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'enter your email address'),
-                          keyboardType: TextInputType.emailAddress,
+                              hintText: 'enter the email here'),
                         )),
-                    SizedBox(height: 10.h),
-                    const Text("Password",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    SizedBox(height: 20.h),
+                    const Text("Enter  new password",
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                    SizedBox(height: 20.h),
                     Container(
-                        margin: EdgeInsets.only(top: 20.h),
+                        margin: EdgeInsets.only(top: 10.h),
                         padding: EdgeInsets.symmetric(horizontal: 10.w),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.r),
                             color: Colors.white),
                         child: TextFormField(
-                          controller:
-                              SignUpBloc.get(context).passwordController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter password';
@@ -202,14 +147,16 @@ class SignUpScreen extends StatelessWidget {
                             }
                             return null;
                           },
+                          controller: ForgotPasswordScreenBloc.get(context)
+                              .passwordController,
                           decoration: const InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Enter your password'),
-                          obscureText: true,
+                              hintText: 'enter the new password here'),
                         )),
-                    SizedBox(height: 10.h),
-                    const Text("Password",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    SizedBox(height: 20.h),
+                    const Text("Re-enter  new password",
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                    SizedBox(height: 20.h),
                     Container(
                         margin: EdgeInsets.only(top: 10.h),
                         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -217,33 +164,27 @@ class SignUpScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                             color: Colors.white),
                         child: TextFormField(
-                          controller:
-                              SignUpBloc.get(context).rePasswordController,
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "please re-enter your password";
-                            } else if (value !=
-                                SignUpBloc.get(context)
+                            if (value !=
+                                ForgotPasswordScreenBloc.get(context)
                                     .passwordController
                                     .text) {
-                              return 'passwords does not match';
-                            } else {
-                              return null;
+                              return "passwords does not match";
                             }
+                            return null;
                           },
                           decoration: const InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Re-enter your password'),
-                          obscureText: true,
+                              hintText: 'Re-enter password'),
                         )),
                     Container(
-                      padding: EdgeInsets.only(top: 40.h),
+                      padding: EdgeInsets.all(35.h.w),
                       child: ElevatedButton(
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
+                                borderRadius: BorderRadius.circular(18.0.r),
                               ),
                             ),
                             backgroundColor:
@@ -251,18 +192,19 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              SignUpBloc.get(context).add(RegisterEvent());
+                              ForgotPasswordScreenBloc.get(context)
+                                  .add(ResetPasswordClicked());
                             }
                           },
                           child: Padding(
                             padding: EdgeInsets.all(15.h.w),
                             child: Text(
-                              "Sing up",
+                              "Confirm",
                               style: TextStyle(
                                   fontSize: 20.sp, color: AppColors.blueColor),
                             ),
                           )),
-                    ),
+                    )
                   ],
                 ),
               ),
