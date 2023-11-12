@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../features/fogot_password/presentation/pages/forgot_password.dart';
 import '../../features/fogot_password/presentation/pages/reset_code.dart';
 import '../../features/fogot_password/presentation/pages/reset_password.dart';
@@ -12,7 +11,7 @@ import '../../features/signup/presentation/pages/signup.dart';
 class AppRoute {
   static const String logIn = "/";
   static const String signUp = "signup";
-  static const String homeScreen = "homeScreen";
+  static const String homeScreen = "home";
   static const String productList = "productList";
   static const String productDetails = "productDetails";
   static const String forgotPassword = "forgotPassword";

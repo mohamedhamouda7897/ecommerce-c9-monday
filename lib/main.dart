@@ -20,9 +20,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  String start;
+  final String start;
 
-  MyApp(this.start, {super.key});
+  const MyApp(this.start, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        // initialRoute: start,
+        initialRoute: start,
         onGenerateRoute: (settings) => Routes.onGenerate(settings),
       ),
     );

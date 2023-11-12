@@ -98,7 +98,7 @@ class SignUpScreen extends StatelessWidget {
                         child: InkWell(
                             onTap: () => Navigator.pushNamedAndRemoveUntil(
                                 context, AppRoute.logIn, (route) => false),
-                            child: Icon(Icons.arrow_back))),
+                            child: const Icon(Icons.arrow_back))),
                     Image.asset("assets/images/route.png", height: 80.h),
                     SizedBox(height: 5.h),
                     Text("Full Name",

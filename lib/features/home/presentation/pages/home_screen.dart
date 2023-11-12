@@ -111,24 +111,24 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(25),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     width: 1, color: Color(0xFF004182)),
                                 borderRadius: BorderRadius.circular(25),
                               ),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search,
                                 color: Color(0xFF06004E),
                               ),
                               hintText: 'what do you search for?',
                               hintStyle: TextStyle(
-                                color: Color(0x9906004E),
+                                color: const Color(0x9906004E),
                                 fontSize: 14.sp,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w300,
                               )),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       InkWell(

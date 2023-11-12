@@ -7,6 +7,8 @@ import '../../domain/entities/CategoryAndBrandEntity.dart';
 import '../bloc/home_bloc.dart';
 
 class HomeTab extends StatefulWidget {
+  const HomeTab({super.key});
+
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -29,7 +31,7 @@ class _HomeTabState extends State<HomeTab> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text("Error"),
+              title: const Text("Error"),
               content: Text(state.failures?.message ?? ""),
             ),
           );
@@ -60,7 +62,7 @@ class _HomeTabState extends State<HomeTab> {
                       },
                     ),
                     items: imageUrls.map((imageUrl) {
-                      return Container(
+                      return SizedBox(
                         width: double.infinity,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
@@ -87,7 +89,7 @@ class _HomeTabState extends State<HomeTab> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: _currentIndex == index
-                                ? Color(0xFF06004E)
+                                ? const Color(0xFF06004E)
                                 : Colors.white,
                           ),
                         );
@@ -104,7 +106,7 @@ class _HomeTabState extends State<HomeTab> {
                     Text(
                       'Categories',
                       style: TextStyle(
-                        color: Color(0xFF06004E),
+                        color: const Color(0xFF06004E),
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
                       ),
@@ -114,7 +116,7 @@ class _HomeTabState extends State<HomeTab> {
                       child: Text(
                         'view all',
                         style: TextStyle(
-                          color: Color(0xFF06004E),
+                          color: const Color(0xFF06004E),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         ),
@@ -125,13 +127,13 @@ class _HomeTabState extends State<HomeTab> {
               ),
               (state.categories != null)
                   ? catItem(state.categories ?? [])
-                  : Center(child: CircularProgressIndicator()),
+                  : const Center(child: CircularProgressIndicator()),
               Padding(
                 padding: EdgeInsets.only(left: 16.w),
                 child: Text(
                   'Home Appliance',
                   style: TextStyle(
-                    color: Color(0xFF06004E),
+                    color: const Color(0xFF06004E),
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                   ),
@@ -139,8 +141,8 @@ class _HomeTabState extends State<HomeTab> {
               ),
               state.brands != null
                   ? brandsWidget(state.brands ?? [])
-                  : Center(child: CircularProgressIndicator()),
-              SizedBox(
+                  : const Center(child: CircularProgressIndicator()),
+              const SizedBox(
                 height: 20,
               )
             ],
@@ -154,8 +156,8 @@ class _HomeTabState extends State<HomeTab> {
         height: 288.h,
         margin: EdgeInsets.only(left: 16.w),
         child: GridView.builder(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2),
             scrollDirection: Axis.horizontal,
             itemCount: data.length,
             itemBuilder: (context, i) {
@@ -178,7 +180,7 @@ class _HomeTabState extends State<HomeTab> {
                   Text(
                     data[i].name ?? "",
                     style: TextStyle(
-                      color: Color(0xFF06004E),
+                      color: const Color(0xFF06004E),
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,
                     ),
@@ -213,7 +215,7 @@ class _HomeTabState extends State<HomeTab> {
                     image: NetworkImage(data[index].image ?? ""),
                     fit: BoxFit.fill,
                   ),
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
@@ -223,7 +225,7 @@ class _HomeTabState extends State<HomeTab> {
                 child: Container(
                   width: 16.w,
                   height: 16.h,
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                     color: Colors.white,
                     shape: OvalBorder(),
                     shadows: [
