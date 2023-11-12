@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
           if (state.screenStatus == ScreenStatus.loading) {
             showDialog(
               context: context,
-              builder: (context) => AlertDialog(
+              builder: (context) => const AlertDialog(
                 title: Center(child: CircularProgressIndicator()),
                 elevation: 0,
                 backgroundColor: Colors.transparent,
@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text("Error"),
+                title: const Text("Error"),
                 content: Text(state.failures?.message ?? ""),
               ),
             );
@@ -151,11 +151,7 @@ class LoginScreen extends StatelessWidget {
                         SizedBox(width: 10.w),
                         InkWell(
                             onTap: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, AppRoute.signUp, (route) => false);
-                              LoginBloc.get(context).emailController.text = "";
-                              LoginBloc.get(context).passwordController.text =
-                                  "";
+                              Navigator.pushNamed(context, AppRoute.signUp);
                             },
                             child: Text("Create Account",
                                 style: TextStyle(

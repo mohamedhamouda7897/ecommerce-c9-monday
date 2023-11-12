@@ -65,7 +65,7 @@ class SignUpScreen extends StatelessWidget {
                 title: const Text("Error", style: TextStyle(fontSize: 18)),
                 elevation: 0,
                 content: SizedBox(
-                  height: 100.h,
+                  height: 80.h,
                   child: Column(
                     children: [
                       Text(state.failures?.message ?? "unknown error occurred",
@@ -87,16 +87,22 @@ class SignUpScreen extends StatelessWidget {
             resizeToAvoidBottomInset: false,
             backgroundColor: AppColors.blueColor,
             body: Padding(
-              padding: EdgeInsets.only(top: 70.h, left: 20.w, right: 20.w),
+              padding: EdgeInsets.only(top: 50.h, left: 20.w, right: 20.w),
               child: Form(
                 key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Image.asset("assets/images/route.png"),
-                    SizedBox(height: 10.h),
-                    const Text("Full Name",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: InkWell(
+                            onTap: () => Navigator.pushNamedAndRemoveUntil(
+                                context, AppRoute.logIn, (route) => false),
+                            child: Icon(Icons.arrow_back))),
+                    Image.asset("assets/images/route.png", height: 80.h),
+                    SizedBox(height: 5.h),
+                    Text("Full Name",
+                        style: TextStyle(fontSize: 18.sp, color: Colors.white)),
                     Container(
                         margin: EdgeInsets.only(top: 10.h),
                         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -121,7 +127,7 @@ class SignUpScreen extends StatelessWidget {
                               hintText: 'Enter your full name'),
                           keyboardType: TextInputType.name,
                         )),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 5.h),
                     const Text("Phone Number",
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     Container(
@@ -150,11 +156,11 @@ class SignUpScreen extends StatelessWidget {
                               hintText: 'enter your phone number'),
                           keyboardType: TextInputType.phone,
                         )),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 5.h),
                     const Text("E-mail Address",
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     Container(
-                        margin: EdgeInsets.only(top: 10.h),
+                        margin: EdgeInsets.only(top: 5.h),
                         padding: EdgeInsets.symmetric(horizontal: 10.w),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.r),
@@ -178,7 +184,7 @@ class SignUpScreen extends StatelessWidget {
                               hintText: 'enter your email address'),
                           keyboardType: TextInputType.emailAddress,
                         )),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 5.h),
                     const Text("Password",
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     Container(
@@ -207,7 +213,7 @@ class SignUpScreen extends StatelessWidget {
                               hintText: 'Enter your password'),
                           obscureText: true,
                         )),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 5.h),
                     const Text("Password",
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     Container(
@@ -237,13 +243,13 @@ class SignUpScreen extends StatelessWidget {
                           obscureText: true,
                         )),
                     Container(
-                      padding: EdgeInsets.only(top: 40.h),
+                      padding: EdgeInsets.only(top: 30.h),
                       child: ElevatedButton(
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
+                                borderRadius: BorderRadius.circular(18.r),
                               ),
                             ),
                             backgroundColor:
@@ -255,9 +261,9 @@ class SignUpScreen extends StatelessWidget {
                             }
                           },
                           child: Padding(
-                            padding: EdgeInsets.all(15.h.w),
+                            padding: EdgeInsets.all(5.h.w),
                             child: Text(
-                              "Sing up",
+                              "Sign up",
                               style: TextStyle(
                                   fontSize: 20.sp, color: AppColors.blueColor),
                             ),

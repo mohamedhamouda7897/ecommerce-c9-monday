@@ -18,6 +18,7 @@ import '../../domain/use_cases/get_brands_use_case.dart';
 import '../../domain/use_cases/get_category_use_case.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -72,7 +73,7 @@ class HomeScreen extends StatelessWidget {
               leadingWidth: 83.w,
               leading: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: SvgPicture.asset('assets/images/route.png'),
+                child: SvgPicture.asset('assets/images/route.svg'),
               ),
             ),
             bottomNavigationBar: BottomNavigationBar(
@@ -105,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                               contentPadding:
                                   EdgeInsets.symmetric(vertical: 5.h),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     width: 1, color: Color(0xFF004182)),
                                 borderRadius: BorderRadius.circular(25),
                               ),
@@ -156,5 +157,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> tabs = [HomeTab(), ProductListScreen(), FavTab(), ProfileTab()];
+  final List<Widget> tabs = [
+    HomeTab(),
+    ProductListScreen(),
+    FavTab(),
+    ProfileTab()
+  ];
 }
