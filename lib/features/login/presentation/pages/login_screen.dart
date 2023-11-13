@@ -1,4 +1,6 @@
 import 'package:ecommerce_c9_monday/config/routes/routes.dart';
+import 'package:ecommerce_c9_monday/di/conf.dart';
+import 'package:ecommerce_c9_monday/features/login/domain/use_cases/login_usecase.dart';
 import 'package:ecommerce_c9_monday/features/signup/presentation/bloc/sign_up_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +18,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(),
+      create: (context) => LoginBloc(getIt<LoginUseCase>()),
       child: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state.screenStatus == ScreenStatus.loading) {

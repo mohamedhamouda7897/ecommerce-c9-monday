@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheData.init();
+  configureDependencies();
   Bloc.observer = MyBlocObserver();
   String start;
   String? token = await CacheData.getData("token");

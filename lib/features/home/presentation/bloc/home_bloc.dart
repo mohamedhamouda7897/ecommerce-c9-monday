@@ -1,6 +1,7 @@
 import 'package:ecommerce_c9_monday/core/error/failuers.dart';
 import 'package:ecommerce_c9_monday/features/home/domain/entities/CategoryAndBrandEntity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/use_cases/add_to_cart_usecase.dart';
@@ -10,6 +11,7 @@ import '../../domain/use_cases/get_category_use_case.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
+@injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   GetBrandsUseCase getBrandUseCase;
   GetCategoryUseCase getCategoryUseCase;

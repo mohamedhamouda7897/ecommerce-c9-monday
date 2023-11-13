@@ -6,7 +6,9 @@ import 'package:ecommerce_c9_monday/core/error/failuers.dart';
 import 'package:ecommerce_c9_monday/features/home/data/data_sources/home_remote_ds.dart';
 import 'package:ecommerce_c9_monday/features/home/data/models/CartModel.dart';
 import 'package:ecommerce_c9_monday/features/home/data/models/CategoryAndBrandModel.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: HomeRemoteDS)
 class HomeRemoteDSImpl implements HomeRemoteDS {
   ApiManager apiManager;
 
@@ -19,7 +21,7 @@ class HomeRemoteDSImpl implements HomeRemoteDS {
         endPoint: EndPoints.getBrands,
       );
       CategoryAndBrandModel model =
-          CategoryAndBrandModel.fromJson(response.data);
+      CategoryAndBrandModel.fromJson(response.data);
       return Right(model);
     } catch (e) {
       return Left(RemoteFailure(e.toString()));
@@ -33,7 +35,7 @@ class HomeRemoteDSImpl implements HomeRemoteDS {
         endPoint: EndPoints.getCategory,
       );
       CategoryAndBrandModel model =
-          CategoryAndBrandModel.fromJson(response.data);
+      CategoryAndBrandModel.fromJson(response.data);
       return Right(model);
     } catch (e) {
       return Left(RemoteFailure(e.toString()));

@@ -1,4 +1,5 @@
 import 'package:ecommerce_c9_monday/core/utils/app_colors.dart';
+import 'package:ecommerce_c9_monday/di/conf.dart';
 import 'package:ecommerce_c9_monday/features/home/domain/use_cases/add_to_cart_usecase.dart';
 import 'package:ecommerce_c9_monday/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecommerce_c9_monday/features/home/presentation/tabs/fav_tab.dart';
@@ -24,28 +25,11 @@ class HomeScreen extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (context) => HomeBloc(
-                GetBrandsUseCase(
-                  HomeRepoImpl(
-                    HomeRemoteDSImpl(
-                      ApiManager(),
-                    ),
-                  ),
-                ),
-                GetCategoryUseCase(
-                  HomeRepoImpl(
-                    HomeRemoteDSImpl(
-                      ApiManager(),
-                    ),
-                  ),
-                ),
-                AddCartUseCase(
-                  HomeRepoImpl(
-                    HomeRemoteDSImpl(
-                      ApiManager(),
-                    ),
-                  ),
-                ))
-              ..add(HomeGetCategoryEvent())
+                  getIt<GetBrandsUseCase>(),
+                  getIt<GetCategoryUseCase>(),
+                  getIt<AddCartUseCase>(),
+                )
+                  ..add(HomeGetCategoryEvent())
               ..add(HomeGetBrandsEvent())),
         BlocProvider(
           create: (context) => ProductListBloc()..add(GetAllProducts()),

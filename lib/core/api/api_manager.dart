@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce_c9_monday/core/utils/constants.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class ApiManager {
   late Dio dio;
 
@@ -11,15 +13,13 @@ class ApiManager {
   // static void initDio(){
   //   dio=Dio();
   // }
-  Future<Response> getData(
-      {required String endPoint, Map<String, dynamic>? data}) {
+  Future<Response> getData({required String endPoint, Map<String, dynamic>? data}) {
     return dio.get(Constants.baseURl + endPoint, queryParameters: data);
   }
 
-  Future<Response> postData(
-      {required String endPoint,
-      required Map<String, dynamic> body,
-      String? token}) {
+  Future<Response> postData({required String endPoint,
+    required Map<String, dynamic> body,
+    String? token}) {
     return dio.post(Constants.baseURl + endPoint,
         data: body, options: Options(headers: {"token": token}));
   }

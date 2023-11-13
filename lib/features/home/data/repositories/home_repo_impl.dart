@@ -5,7 +5,9 @@ import 'package:ecommerce_c9_monday/features/home/data/data_sources/home_remote_
 import 'package:ecommerce_c9_monday/features/home/data/models/CartModel.dart';
 import 'package:ecommerce_c9_monday/features/home/domain/entities/CategoryAndBrandEntity.dart';
 import 'package:ecommerce_c9_monday/features/home/domain/repositories/home_repo.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: HomeRepo)
 class HomeRepoImpl implements HomeRepo {
   HomeRemoteDS homeRemoteDS;
 
