@@ -17,10 +17,12 @@ class ProductItem extends StatelessWidget {
     var product = productModel?.data?[index];
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          AppRoute.productDetails,
-          arguments: product,
-        );
+        if (product != null) {
+          Navigator.of(context).pushNamed(
+            AppRoute.productDetails,
+            arguments: product,
+          );
+        }
       },
       child: Padding(
         padding: EdgeInsets.only(

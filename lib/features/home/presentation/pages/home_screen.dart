@@ -18,6 +18,7 @@ import '../../domain/use_cases/get_brands_use_case.dart';
 import '../../domain/use_cases/get_category_use_case.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -84,7 +85,7 @@ class HomeScreen extends StatelessWidget {
               type: BottomNavigationBarType.fixed,
               selectedItemColor: Colors.white,
               unselectedItemColor: Colors.grey,
-              items: [
+              items: const [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.production_quantity_limits_rounded),
@@ -105,29 +106,29 @@ class HomeScreen extends StatelessWidget {
                               contentPadding:
                                   EdgeInsets.symmetric(vertical: 5.h),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     width: 1, color: Color(0xFF004182)),
                                 borderRadius: BorderRadius.circular(25),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     width: 1, color: Color(0xFF004182)),
                                 borderRadius: BorderRadius.circular(25),
                               ),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.search,
                                 color: Color(0xFF06004E),
                               ),
                               hintText: 'what do you search for?',
                               hintStyle: TextStyle(
-                                color: Color(0x9906004E),
+                                color: const Color(0x9906004E),
                                 fontSize: 14.sp,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w300,
                               )),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       InkWell(
@@ -156,5 +157,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> tabs = [HomeTab(), ProductListScreen(), FavTab(), ProfileTab()];
+  final List<Widget> tabs = [
+    HomeTab(),
+    ProductListScreen(),
+    FavTab(),
+    ProfileTab()
+  ];
 }

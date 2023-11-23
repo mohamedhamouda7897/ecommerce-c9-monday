@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../../core/error/failures.dart';
+import '../../../../../core/error/failuers.dart';
 import '../../models/ProductModel.dart';
 
 abstract class ProductRemoteDS {

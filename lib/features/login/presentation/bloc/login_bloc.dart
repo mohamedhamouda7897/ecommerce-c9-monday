@@ -9,6 +9,7 @@ import 'package:ecommerce_c9_monday/features/login/domain/repositories/login_rep
 import 'package:ecommerce_c9_monday/features/login/domain/use_cases/login_usecase.dart';
 import 'package:ecommerce_c9_monday/features/signup/domain/entities/UserEntity.dart';
 import 'package:ecommerce_c9_monday/features/signup/presentation/bloc/sign_up_bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -16,6 +17,8 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   static LoginBloc get(context) => BlocProvider.of(context);
 
   LoginBloc() : super(LoginInitial()) {
@@ -28,10 +31,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         LoginRepo loginRepo = LoginRepoImpl(loginRemoteDS, localDS);
         LoginUseCase loginUseCase = LoginUseCase(loginRepo);
 
-        var result = await loginUseCase.call("sra@gmail.com", "sama@123");
+        var result = await loginUseCase.call(
+            emailController.text, passwordController.text);
         result.fold((l) {
-          emit(
-              state.copyWith(screenStatus: ScreenStatus.failures, failures: l));
+          emit(state.copyWith(screenStatus: ScreenStatus.failure, failures: l));
         }, (r) {
           emit(state.copyWith(
               userEntity: r, screenStatus: ScreenStatus.successfully));
